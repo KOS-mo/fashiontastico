@@ -5,7 +5,6 @@
   <title>Canvas</title>
   
     <link rel="stylesheet" href="css/style.css">
- 
   
 </head>
 
@@ -24,37 +23,13 @@
   <br>
 
    <!-- Linea nueva -->
-  <input type="file" id="fileUpload" />
-
-  <script type="text/javascript">
-    function el(id){return document.getElementById(id);}
-
-    var canvas  = el("canvas");
-    var context = canvas.getContext("2d");
-
-    function readImage() {
-        if ( this.files && this.files[0] ) {
-            var FR= new FileReader();
-            FR.onload = function(e) {
-               var img = new Image();
-               img.onload = function() {
-                 context.drawImage(img, 0, 0);
-               };
-               img.src = e.target.result;
-            };       
-            FR.readAsDataURL( this.files[0] );
-        }
-    }
-
-    el("fileUpload").addEventListener("change", readImage, false);
-  </script>
+  <input type="file" id="fileUpload" name="fileToUpload" />
 
 
- 
+  <button style="background:mediumseagreen" onclick="ActivarTraslacion()">Mover objetos</button>
 
-  <button style="background:mediumseagreen" onclick="Restore()">Deshacer</button>
   <button style="background:goldenrod" onclick="Clear()">Limpiar</button>
-  <a style="background:lightseagreen" onclick="Save(this)">Descargar</a>
+  <a id="download" style="background:lightseagreen" onclick="Save(this)">Descargar</a>
   <br>
   <div onclick="strokeCOLOR(this)" style="background:coral" class="strokeColor"></div>
   <div onclick="strokeCOLOR(this)" style="background:teal" class="strokeColor"></div>

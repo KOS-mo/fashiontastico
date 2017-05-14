@@ -1,63 +1,96 @@
+var isDrawing = false;
 var canvas = document.getElementById("canvas");
+var context = canvas.getContext("2d");
 // canvas.width = window.innerWidth - 60;
 // canvas.height = window.innerHeight*0.6;
-var context = canvas.getContext("2d");
+
+context.fillStyle = "white";
+////context.fillRect(0, 0, canvas.width, canvas.height);
+context.fillRect(0, 0, 680, 450);
+//var restore = new Array();
+var resloc = -1;
+var strokeColor = 'black';
+var strokeWidth = "2";
+var esTraslacion = false;
 
 // nuevas lineas para colocar background
 if(context){
   var imgBackground = new Image();
-  imgBackground.src = 'Bolsa.png'
+  //imgBackground.crossOrigin = '';
+  ////imgBackground.src = 'Bolsa.png';
+  // imgBackground.setAttribute('crossOrigin', '');
+  
   imgBackground.onload = function(){
     // context.drawImage(imgBackground, 96, 0); // Para Playera.png
     // context.drawImage(imgBackground, 175, 0); // Para Vestido.png
-    context.drawImage(imgBackground, 147, 0); // Para Bolsa.png
+    ////context.drawImage(imgBackground, 147, 0); // Para Bolsa.png
   } 
 }
-
-
-context.fillStyle = "white";
-context.fillRect(0, 0, canvas.width, canvas.height);
-var restore = new Array();
-var resloc = -1;
-var strokeColor = 'black';
-var strokeWidth = "2";
 
 function strokeCOLOR(a) {
   strokeColor = a.style.background;
 }
 
 function strokeWIDTH(a) {
-  strokeWidth = a.innerHTML
+  strokeWidth = a.innerHTML;
 }
 
 function start(event) {
-  isDrawing = true;
-  context.beginPath();
-  context.moveTo(getX(event), getY(event));
-  event.preventDefault();
+  if(!esTraslacion){
+    isDrawing = true;
+    context.beginPath();
+    context.moveTo(getX(event), getY(event));
+    event.preventDefault();
+  }else{
+    for(var i = 0; i < objetos.length; i++) {
+      if(objetos[i].x < event.clientX
+        && (objetos[i].width + objetos[i].x > event.clientX)
+        && objetos[i].y < event.clientY
+        && (objetos[i].height + objetos[i].y > event.clientY)) {
+        objetoActual = objetos[i];
+        inicioY = event.clientY - objetos[i].y;
+        inicioX = event.clientX - objetos[i].x;
+        break;
+      }
+    }
+  }
 }
 
 function draw(event) {
-  if (isDrawing) {
-    context.lineTo(getX(event), getY(event));
-    context.strokeStyle = strokeColor;
-    context.lineWidth = strokeWidth;
-    context.lineCap = "round";
-    context.lineJoin = "round";
-    context.stroke();
+  if(!esTraslacion){
+    if (isDrawing) {
+      context.lineTo(getX(event), getY(event));
+      context.strokeStyle = strokeColor;
+      context.lineWidth = strokeWidth;
+      context.lineCap = "round";
+      context.lineJoin = "round";
+      context.stroke();
+    }
+    event.preventDefault();
+  }else{
+    if(objetoActual != null) {
+      objetoActual.x = event.clientX - inicioX;
+      objetoActual.y = event.clientY - inicioY;
+      actualizar();
+    }
   }
-  event.preventDefault();
 }
 
 function stop(event) {
-  if (isDrawing) {
-    context.stroke();
-    context.closePath();
-    isDrawing = false;
+  if(!esTraslacion){
+    if (isDrawing) {
+      context.stroke();
+      context.closePath();
+      isDrawing = false;
+    }
+    event.preventDefault();
+    // Deshabilitar todas las funcionalidades del botón Deshacer
+    ////restore.push(context.getImageData(0, 0, canvas.width, canvas.height));
+    ////restore.push(context.getImageData(0, 0, 680, 450));
+    resloc += 1;
+  }else{
+    objetoActual = null;
   }
-  event.preventDefault();
-  restore.push(context.getImageData(0, 0, canvas.width, canvas.height));
-  resloc += 1;
 }
 
 function getX(event) {
@@ -71,13 +104,15 @@ function getY(event) {
   else {return event.pageY - canvas.offsetTop}
 }
 
-canvas.addEventListener("touchstart", start, false);
-canvas.addEventListener("touchmove", draw, false);
-canvas.addEventListener("touchend", stop, false);
+//canvas.addEventListener("touchstart", start, false);
+//canvas.addEventListener("touchmove", draw, false);
+//canvas.addEventListener("touchend", stop, false);
 canvas.addEventListener("mousedown", start, false);
 canvas.addEventListener("mousemove", draw, false);
 canvas.addEventListener("mouseup", stop, false);
 canvas.addEventListener("mouseout", stop, false);
+
+
 
 function Restore() {
   if (resloc <= 0) {
@@ -90,13 +125,24 @@ function Restore() {
 }
 
 function Save(a) {
+  // Lineas nuevas
+  var filename = prompt("Guardar como...","Nombre del archivo");
+
+  link = document.getElementById("download");
+  link.href = canvas.toDataURL("image/png");
+  link.download = filename;
+
+/*
   var img = canvas.toDataURL('image/png');
-  a.href = img;
+  img = img.replace("image/png", "image/octet-stream");
+  document.location.href = img;
+*/
+  ////a.href = img;
 }
 
 function Clear() {
-  var confirmClear = confirm('Are you sure you would like to clear your canvas? This cannot be undone.');
-  if (confirmClear == true) {
+  ////var confirmClear = confirm('¿Limpiar el área de trabajo?');
+  ////if (confirmClear == true) {
     context.fillStyle = "white";
     ////context.clearRect(0, 0, canvas.width, canvas.height);
     ////context.fillRect(0, 0, canvas.width, canvas.height);
@@ -104,15 +150,123 @@ function Clear() {
     context.fillRect(0, 0, 680, 450);
 
     // Al limpiar se debe quedar la imagen de fondo
-    var imgBackground = new Image();
-    imgBackground.src = 'Bolsa.png'
+//    var imgBackground = new Image();
+//    imgBackground.src = 'Bolsa.png'
     // usar flag para saber cuál debe ser el fondo
     // context.drawImage(imgBackground, 96, 0); // Para Playera.png
     // context.drawImage(imgBackground, 175, 0); // Para Vestido.png
     context.drawImage(imgBackground, 147, 0); // Para Bolsa.png
     // Fin de lineas nuevas
 
-    restore = new Array();
+    //// restore = new Array();
     resloc = -1;
-  } else {}
+  ////} else {}
 }
+
+function ActivarTraslacion() {
+  if(esTraslacion){
+    esTraslacion = false;
+  }else{
+    esTraslacion = true;
+  }
+}
+
+document.getElementById("fileUpload").addEventListener("change", readImage, false);
+
+function readImage() {
+  if( comprueba_extension(this.files[0].name) ){
+
+    if ( this.files && this.files[0] ) {
+        var FR= new FileReader();
+        FR.onload = function(e) {
+           var img = new Image();
+           img.onload = function() {
+             context.drawImage(img, 0, 0);
+           };
+           img.src = e.target.result;
+        };       
+        FR.readAsDataURL( this.files[0] );
+    }
+  }
+}
+
+
+function comprueba_extension(archivo) { 
+  var extension = (archivo.substring(archivo.lastIndexOf("."))).toLowerCase(); 
+  var permitida = false; 
+          
+  if(extension == ".png"){ 
+    permitida = true; 
+  }
+
+  if (!permitida) { 
+    alert ("Comprueba la extensión de los archivos a subir. \nSólo se pueden subir archivos con extension png"); 
+    return 0;
+  }else{             
+    return 1; 
+  } 
+}
+
+// Para transformaciones sobre las imágenes
+var objetos, objetoActual = null;
+var inicioX = 0, inicioY = 0;
+
+function actualizar() {
+  //// context.fillStyle = '#f0f0f0';// Para limpiar cada que se actualiza
+  //// context.fillRect(0, 0, 400, 300);
+  Clear();
+  for(var i = 0; i < objetos.length; i++){
+    context.fillStyle = objetos[i].color;
+    context.fillRect(objetos[i].x, objetos[i].y, objetos[i].width, objetos[i].height);
+  }
+}
+
+window.onload = function() {
+  objetos = [];
+  // cv = document.getElementById('lienzo');
+  // cx = cv.getContext('2d');
+
+  // agregar objetos de prueba
+  objetos.push({
+    x: 0, y: 0,
+    width: 100, height: 200,
+    color: '#00f'
+  });
+  objetos.push({
+    x: 300, y: 150,
+    width: 50, height: 100,
+    color: '#f00'
+  });
+  actualizar();
+/*
+  canvas.onmousedown = function(event){
+    console.log("Dentro de onmousedown");
+    for(var i = 0; i < objetos.length; i++) {
+      if(objetos[i].x < event.clientX
+        && (objetos[i].width + objetos[i].x > event.clientX)
+        && objetos[i].y < event.clientY
+        && (objetos[i].height + objetos[i].y > event.clientY)) {
+        objetoActual = objetos[i];
+        inicioY = event.clientY - objetos[i].y;
+        inicioX = event.clientX - objetos[i].x;
+        break;
+      }
+    }
+  };
+*/
+/*
+  canvas.onmousemove = function(event) {
+    if(objetoActual != null) {
+      objetoActual.x = event.clientX - inicioX;
+      objetoActual.y = event.clientY - inicioY;
+      actualizar();
+    }
+    
+  };
+*/
+/*
+  canvas.onmouseup = function(event) {
+    objetoActual = null;
+  }
+*/
+};
