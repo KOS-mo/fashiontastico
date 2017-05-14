@@ -2,24 +2,59 @@
 <html >
 <head>
   <meta charset="UTF-8">
-  <title>Canvas Drawing/Sketch App</title>
+  <title>Canvas</title>
   
-  
-  
-      <link rel="stylesheet" href="css/style.css">
-
+    <link rel="stylesheet" href="css/style.css">
+ 
   
 </head>
 
 <body>
-  <link href='https://fonts.googleapis.com/css?family=Patrick+Hand' rel='stylesheet' type='text/css'>
+<!--
+  <l
+  ink href='https://fonts.googleapis.com/css?family=Patrick+Hand' rel='stylesheet' type='text/css'>
+  -->
 <center>
+
+<!--
   <p style="color:white;margin:0px 0px 25px;font-family:'Patrick Hand',cursive ;line-height:20px;font-size:45px">SKETCH</p>
-  <canvas id="canvas"></canvas>
+  -->
+  <p>Personaliza tu producto</p>
+  <canvas id="canvas" width="680" height="450"></canvas>
   <br>
-  <button style="background:mediumseagreen" onclick="Restore()">Undo</button>
-  <button style="background:goldenrod" onclick="Clear()">Clear</button>
-  <a style="background:lightseagreen" onclick="Save(this)">Download</a>
+
+   <!-- Linea nueva -->
+  <input type="file" id="fileUpload" />
+
+  <script type="text/javascript">
+    function el(id){return document.getElementById(id);}
+
+    var canvas  = el("canvas");
+    var context = canvas.getContext("2d");
+
+    function readImage() {
+        if ( this.files && this.files[0] ) {
+            var FR= new FileReader();
+            FR.onload = function(e) {
+               var img = new Image();
+               img.onload = function() {
+                 context.drawImage(img, 0, 0);
+               };
+               img.src = e.target.result;
+            };       
+            FR.readAsDataURL( this.files[0] );
+        }
+    }
+
+    el("fileUpload").addEventListener("change", readImage, false);
+  </script>
+
+
+ 
+
+  <button style="background:mediumseagreen" onclick="Restore()">Deshacer</button>
+  <button style="background:goldenrod" onclick="Clear()">Limpiar</button>
+  <a style="background:lightseagreen" onclick="Save(this)">Descargar</a>
   <br>
   <div onclick="strokeCOLOR(this)" style="background:coral" class="strokeColor"></div>
   <div onclick="strokeCOLOR(this)" style="background:teal" class="strokeColor"></div>
@@ -39,8 +74,7 @@
   <div onclick="strokeWIDTH(this)" class="strokeWidth">10</div>
   <input type="range" min="1" max="100" oninput="strokeWidth =this.value">
 </center>
-  
-    <script src="js/index.js"></script>
 
+    <script src="js/index.js"></script>
 </body>
 </html>

@@ -1,7 +1,20 @@
 var canvas = document.getElementById("canvas");
-canvas.width = window.innerWidth - 60;
-canvas.height = window.innerHeight*0.6;
+// canvas.width = window.innerWidth - 60;
+// canvas.height = window.innerHeight*0.6;
 var context = canvas.getContext("2d");
+
+// nuevas lineas para colocar background
+if(context){
+  var imgBackground = new Image();
+  imgBackground.src = 'Bolsa.png'
+  imgBackground.onload = function(){
+    // context.drawImage(imgBackground, 96, 0); // Para Playera.png
+    // context.drawImage(imgBackground, 175, 0); // Para Vestido.png
+    context.drawImage(imgBackground, 147, 0); // Para Bolsa.png
+  } 
+}
+
+
 context.fillStyle = "white";
 context.fillRect(0, 0, canvas.width, canvas.height);
 var restore = new Array();
@@ -85,8 +98,20 @@ function Clear() {
   var confirmClear = confirm('Are you sure you would like to clear your canvas? This cannot be undone.');
   if (confirmClear == true) {
     context.fillStyle = "white";
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    context.fillRect(0, 0, canvas.width, canvas.height);
+    ////context.clearRect(0, 0, canvas.width, canvas.height);
+    ////context.fillRect(0, 0, canvas.width, canvas.height);
+    context.clearRect(0, 0, 680, 450);
+    context.fillRect(0, 0, 680, 450);
+
+    // Al limpiar se debe quedar la imagen de fondo
+    var imgBackground = new Image();
+    imgBackground.src = 'Bolsa.png'
+    // usar flag para saber cuál debe ser el fondo
+    // context.drawImage(imgBackground, 96, 0); // Para Playera.png
+    // context.drawImage(imgBackground, 175, 0); // Para Vestido.png
+    context.drawImage(imgBackground, 147, 0); // Para Bolsa.png
+    // Fin de lineas nuevas
+
     restore = new Array();
     resloc = -1;
   } else {}
