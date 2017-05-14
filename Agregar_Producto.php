@@ -1,9 +1,4 @@
 <!DOCTYPE HTML>
-<!--
-	Stellar by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 	<head>
 		<title>fASHIONTASTICO - CARRITO DE COMPRAS</title>
@@ -15,6 +10,26 @@
 	</head>
 	<body class="landing">
 			<div id="page-wrapper">
+		<header id="header" class="alt">
+            <h1><a href="index.html">FASHIONTASTICO</a></h1>
+            <nav id="nav">
+                <ul>
+                    <li class="special">
+                        <a href="#menu" class="menuToggle"><span>Menu</span></a>
+                        <div id="menu">
+                            <ul>
+                                <li><a href="./index.php">Pagina principal</a>
+                                </li>
+                                <li><a href="./Productos.php">Productos</a>
+                                </li>
+                                <li><a href="./index.php">Salir</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </header>
 				<header>
 					<img src="images/fashiontastico.png" width="200px">
 				</header>

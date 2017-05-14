@@ -12,7 +12,7 @@ include ("../conexion.php");
 
 	$link = Conectarse();
 
-	$query = "INSERT INTO productos (producto,descripcion,imagen,precio,talla) VALUES ('$producto','$descripcion','$foto','$precio''$talla')";
+	$query = "INSERT INTO productos (producto,descripcion,imagen,precio,talla) VALUES ('$producto','$descripcion','$foto','$precio','$talla')";
 
 	$result=mysqli_query($link,$query);
  

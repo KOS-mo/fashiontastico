@@ -8,34 +8,27 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body class="landing">
+
 <!-- The Modal -->
 <div id="myModal" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2>Editar Producto</h2>
-        </div>
-        <div class="modal-body">
-        <div id="wrapper">
-              <div id="column-1">
-                Producto
-                    <input type="text" name="producto_m" id="producto_m" >
-                Precio
-                    <input type="text" name="precio_m" id="precio_m">
 
-              </div>
-              <div id="column-2">
-                Descripción
-                    <input type="number" name="descripcion_m" id="descripcion_m">
-              </div>
-            </div>
-        </div>
-        
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Modal Header</h2>
     </div>
-</div>
+    <div class="modal-body">
+      <p>Some text in the Modal Body</p>
+      <p>Some other text...</p>
+    </div>
+  </div>
 
+</div>
 
     <!-- Page Wrapper -->
     <div id="page-wrapper">
@@ -76,6 +69,7 @@
                             <td>Imagen</td>
                             <td>Producto</td>
                             <td>Descripcion</td>
+                            <td>Talla</td>
                             <td>Precio</td>
                             <td>Editar</td>
                             <td>Eliminar</td>
@@ -88,13 +82,16 @@
                     $sql = "SELECT * FROM productos" ;
                     $result = mysqli_query($link,$sql);
                     while ($row = mysqli_fetch_array($result)) {  
-                    $img = $row[3];
+                    $img = $row[4];
                     echo"<tr>
-                        <td><img src='../productos/".$img."' width='42' height='42'/></td>
+                        <td><img src='fotos/".$img."' width='42' height='42'/></td>
                         <td>".$row[1]."</td>
                         <td>".$row[2]."</td>
-                        <td>".$row[4]."</td>
-                        <td><button type='button' class='open-Modal btn btn-primary btn-lg' data-toggle='modal' data-target='#myModal' data-id='".$row[1]."' data-precio='".$row[4]."' data-detalles='".$row[1]."'  ><i class='fa fa-pencil'></i>      Editar   </button></td>"
+                        <td>".$row[3]."</td>
+                        <td>".$row[5]."</td>
+                        <td><button type='button' class='open-Modal btn btn-primary btn-lg' data-toggle='modal' data-target='#myModal' data-id='".$row[1]."' data-precio='".$row[4]."' data-detalles='".$row[1]."'  ><i class='fa fa-pencil'></i>      Editar   </button></td>
+
+                        "
                         ;
                     }
                     ?>
