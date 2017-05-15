@@ -1,9 +1,0 @@
-<?php
-	$server="mysql.hostinger.mx";
-	$username="u467192330_fanta";
-	$password="Chaliie93";
-	$db='u467192330_compr';
-	$con=mysqli_connect($server,$username,$password,$db)or die("no se ha podido establecer la conexion");
-	$sdb=mysqli_select_db($con,$db)or die("la base de datos no existe");
-	//$sdb=mysqli_select_db($db)or die("la base de datos no existe");
-?>

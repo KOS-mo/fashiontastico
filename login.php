@@ -1,9 +1,4 @@
 <!DOCTYPE HTML>
-<!--
-	Stellar by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 
 <head>
@@ -45,7 +40,6 @@
         <header>
             <img src="images/fashiontastico.png" width="200px" style="margin-left: 2%">
         </header>
-        <!-- Content -->
         <!-- Main -->
         <div id="main">
 

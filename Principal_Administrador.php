@@ -1,4 +1,3 @@
-<?php session_start(); include "./conexion.php"; if(isset($_SESSION[ 'Usuario'])){ }else{ header( "Location: ./index.php?Error=Acceso denegado"); } ?>
 
 <!DOCTYPE HTML>
 <html>
@@ -25,9 +24,7 @@
                             <ul>
                                 <li><a href="./index.php">Pagina principal</a>
                                 </li>
-                                <li><a href="./Agregar.html">Agregar</a>
-                                </li>
-                                <li><a href="./Modificar.html">Modificar</a>
+                                <li><a href="./Productos.php">Productos</a>
                                 </li>
                                 <li><a href="./index.php">Salir</a>
                                 </li>
@@ -38,46 +35,44 @@
             </nav>
         </header>
         <header>
-            <img src="images/fashiontastico.png" width="400px">
+            <img src="images/fashiontastico.png" width="200px">
         </header>
         <!-- Content -->
         <div>
-
-                <center>
-                    <h1>Últimas Compras</h1>
-                </center>
-                <table border="0px" width="100%">
+            <center>
+                <h1>Últimas Compras</h1>
+            </center>
+                <table >
                     <thead>
-                        <td>Imagen</td>
-                        <td>N° de Venta</td>
-                        <td>Usuario</td>
-                        <td>Total</td>
+                        <tr>
+                            <td>Imagen</td>
+                            <td>N° de Venta</td>
+                            <td>Usuario</td>
+                            <td>Total</td>
+                        </tr>
                     </thead>
                     <tbody>
                     <?php 
-                    include ("../php/conexion.php");
+                    include ("/php/conexion.php");
                     $link = Conectarse();
                     $sql = "SELECT * FROM compras" ;
                     $result = mysqli_query($link,$sql);
-                    while ($row = mysqli_fetch_array($result)) { 
-                    if($numeroventa !=$f[ 'numeroventa']){ 
-                    $img = row[2];
+                    while ($row = mysqli_fetch_array($result)) {  
+                    $img = $row[2];
+                    echo"<tr>
                         <td><img src='../productos/".$img."' width='42' height='42'/></td>
                         <td>".$row[0]."</td>
                         <td>".$row[1]."</td>
                         <td>".$row[3]."</td>
-                        </tr>";
+                        </tr>"
+                        ;
                     }
                     ?>
                     </tbody>
                 </table>
-            </section>
         </div>
-
-        <!-- Footer -->
-        <footer id="footer">
-            <section>
-                <h2>CONTACTO</h2>
+        <div style="text-align: center;">
+                <h2>Contacto</h2>
                 <dl class="alt">
                     <dt>Telefono</dt>
                     <dd>(+52) 1 222 564 5392</dd>
@@ -93,9 +88,12 @@
                     </li>
 
                 </ul>
-            </section>
             <p class="copyright">&copy;Diseñado: <a href="">Skytec Enterprises</a>.</p>
-        </footer>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
 
     </div>
 

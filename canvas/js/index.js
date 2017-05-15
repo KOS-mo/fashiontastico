@@ -352,7 +352,6 @@ window.onload = function() {
 */
 
  /* 
-
   canvas.onmousedown = function(event){
     console.log("Dentro de onmousedown");
     for(var i = 0; i < objetos.length; i++) {
