@@ -17,13 +17,13 @@ var esTraslacion = false;
 if(context){
   var imgBackground = new Image();
   //imgBackground.crossOrigin = '';
-  ////imgBackground.src = 'Bolsa.png';
+  imgBackground.src = 'Bolsa.png';
   // imgBackground.setAttribute('crossOrigin', '');
   
   imgBackground.onload = function(){
     // context.drawImage(imgBackground, 96, 0); // Para Playera.png
     // context.drawImage(imgBackground, 175, 0); // Para Vestido.png
-    ////context.drawImage(imgBackground, 147, 0); // Para Bolsa.png
+    context.drawImage(imgBackground, 147, 0); // Para Bolsa.png
   } 
 }
 
@@ -150,8 +150,8 @@ function Clear() {
     context.fillRect(0, 0, 680, 450);
 
     // Al limpiar se debe quedar la imagen de fondo
-//    var imgBackground = new Image();
-//    imgBackground.src = 'Bolsa.png'
+    var imgBackground = new Image();
+    imgBackground.src = 'Bolsa.png'
     // usar flag para saber cuál debe ser el fondo
     // context.drawImage(imgBackground, 96, 0); // Para Playera.png
     // context.drawImage(imgBackground, 175, 0); // Para Vestido.png
@@ -237,7 +237,7 @@ window.onload = function() {
     width: 50, height: 100,
     color: '#f00'
   });
-  actualizar();
+  ////actualizar();
 /*
   canvas.onmousedown = function(event){
     console.log("Dentro de onmousedown");

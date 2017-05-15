@@ -20,11 +20,30 @@
   <div class="modal-content">
     <div class="modal-header">
       <span class="close">&times;</span>
-      <h2>Modal Header</h2>
+      <h2>Editar Producto</h2>
     </div>
     <div class="modal-body">
-      <p>Some text in the Modal Body</p>
-      <p>Some other text...</p>
+    <form action="php/CRUD_Productos/modificarproducto.php" method="POST" enctype="multipart/form-data">
+    <div style="color:black;">
+        ID Producto
+            <input type="text" name="id" id="id" hidden="true" readonly>
+        Producto
+            <input type="text" name="producto" id="producto">
+        Precio
+            <input type="number" step="any" name="precio" id="precio">
+        Descripción
+            <input type="text" name="descripcion" id="descripcion">  
+        Talla
+            <select name="talla" id="talla">
+                <option value="Chica">Chica</option>
+                <option value="Mediana">Mediana</option>
+                <option value="Grande">Grande</option>
+                <option value="Unitalla">Unitalla</option>
+            </select>
+        <br>
+        <input type="Submit" name="submit" value="Enviar" style="color:black;">
+    </div>
+    </form>
     </div>
   </div>
 
@@ -89,7 +108,7 @@
                         <td>".$row[2]."</td>
                         <td>".$row[3]."</td>
                         <td>".$row[5]."</td>
-                        <td><button type='button' class='open-Modal btn btn-primary btn-lg' data-toggle='modal' data-target='#myModal' data-id='".$row[1]."' data-precio='".$row[4]."' data-detalles='".$row[1]."'  ><i class='fa fa-pencil'></i>      Editar   </button></td>
+                        <td><button type='button' class='open-Modal btn btn-primary btn-lg' data-toggle='modal' data-target='#myModal' data-id='".$row[1]."' data-precio='".$row[5]."' data-detalles='".$row[2]."' data-talla='".$row[3]."' data-idp='".$row[0]."'><i class='fa fa-pencil'></i>      Editar   </button></td>
 
                         "
                         ;
@@ -140,10 +159,13 @@ $(document).on("click", ".open-Modal", function () {
     var myproducto = $(this).data('id');
     var myprecio = $(this).data('precio');
     var mydetalles = $(this).data('detalles');
+    var mytalla= $(this).data('talla');
+    var myid = $(this).data('idp');
     $(".modal-body #producto").val( myproducto );
-    $(".modal-body #productos_m").val( myproducto );
-    $(".modal-body #precio_m").val( myprecio );
-    $(".modal-body #detalles_m").val( mydetalles );
+    $(".modal-body #id").val( myid );
+    $(".modal-body #precio").val( myprecio );
+    $(".modal-body #descripcion").val( mydetalles );
+    $(".modal-body #talla").val(mytalla);
 });
 
 
