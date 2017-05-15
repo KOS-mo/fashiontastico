@@ -26,7 +26,7 @@
     <form action="php/CRUD_Productos/modificarproducto.php" method="POST" enctype="multipart/form-data">
     <div style="color:black;">
         ID Producto
-            <input type="text" name="id" id="id" hidden="true" readonly>
+            <input type="text" name="id" id="id" readonly>
         Producto
             <input type="text" name="producto" id="producto">
         Precio
@@ -46,8 +46,34 @@
     </form>
     </div>
   </div>
-
 </div>
+
+
+
+<!-- The Modal -->
+<div id="myModal-Del" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Eliminar Producto</h2>
+    </div>
+    <div class="modal-body">
+    <form action="php/CRUD_Productos/eliminarproducto.php" method="POST" enctype="multipart/form-data">
+    <div style="color:black;">
+        ID Producto
+            <input type="text" name="id" id="id"  readonly>
+        Producto
+            <input type="text" name="producto" id="producto">
+        <br>
+        <input type="Submit" name="submit" value="Eliminar" style="color:black;">
+    </div>
+    </form>
+    </div>
+  </div>
+</div>
+
 
     <!-- Page Wrapper -->
     <div id="page-wrapper">
@@ -109,6 +135,7 @@
                         <td>".$row[3]."</td>
                         <td>".$row[5]."</td>
                         <td><button type='button' class='open-Modal btn btn-primary btn-lg' data-toggle='modal' data-target='#myModal' data-id='".$row[1]."' data-precio='".$row[5]."' data-detalles='".$row[2]."' data-talla='".$row[3]."' data-idp='".$row[0]."'><i class='fa fa-pencil'></i>      Editar   </button></td>
+                        <td><button type='button' class='open-Modal btn btn-primary btn-lg' data-toggle='modal' data-target='#myModal-Del' data-id='".$row[1]."'  data-idp='".$row[0]."'><i class='fa fa-pencil'></i>      Eliminar   </button></td>
 
                         "
                         ;
@@ -170,8 +197,10 @@ $(document).on("click", ".open-Modal", function () {
 
 
 //Paso de parametros a la ventana modal borrar
-$(document).on("click", ".open-Modal_delete", function () {
+$(document).on("click", ".open-Modal-Del", function () {
     var myproducto = $(this).data('id');
+    var myid = $(this).data('idp');
     $(".modal-content #producto").val( myproducto );
+    $(".modal-content #id").val(myid);
 });
 </script>
