@@ -16,7 +16,8 @@
 	/* Modal Content */
 	.modal-content {
 	    position: relative;
-	    background-color: #fefefe;
+	    background-color: #3C3C3B;
+	    opacity: 0.9;
 	    margin: auto;
 	    padding: 0;
 	    border: 1px solid #888;
@@ -56,30 +57,22 @@
 
 	.modal-header {
 	    padding: 2px 16px;
-	    background-color: #009FE3;
-	    color: white;
+	   	background-color: #3C3C3B;
+	    opacity: 0.9;
+	    text-align: center;
+	    vertical-align:middle;
+	    border-style: solid;
+		border-color:#009FE3;
+		border-width: 2px;
 	}
 
-	.modal-body {padding: 2px 16px;}
-
-	#wrapper {
-	  padding-top: 30px;
-	  padding-left: 30px;
-	  display: table;
-	  width: 100%;
-	  min-width: 1000px;
-	  min-height: 400px;
+	.modal-body {
+		border-style: solid;
+		border-color:#009FE3;
+		color: white;
+		border-width: 2px;
+		padding: 2px 16px;
 	}
-	#column-1 {
-	  display: table-cell;
-	  width: 50%;
-	}
-	#column-2 {
-	  display: table-cell;
-	  width: 50%;
-	}
-
-
 
 	.image-upload > input
 	{
@@ -89,4 +82,14 @@
 	.image-upload img
 	{
 	    cursor: pointer;
+	}
+
+	.element1 {
+		display:inline-block;
+		margin-right:10px; 
+		width:300px; 
+	} 
+	.element2 {
+		display:inline-block; 
+		width:500px; 
 	}

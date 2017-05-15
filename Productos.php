@@ -19,29 +19,68 @@
   <!-- Modal content -->
   <div class="modal-content">
     <div class="modal-header">
-      <span class="close">&times;</span>
-      <h2>Editar Producto</h2>
+    <span class="close">&times;</span>
+      <h2 style="color:#009FE3;vertical-align:middle;">Editar Producto</h2>
     </div>
     <div class="modal-body">
-    <form action="php/CRUD_Productos/modificarproducto.php" method="POST" enctype="multipart/form-data">
-    <div style="color:black;">
-        ID Producto
+    <form class="myform" action="php/CRUD_Productos/modificarproducto.php" method="POST" enctype="multipart/form-data">
+    <div>
+        <br>
+        <div class="element1">
+            ID Producto
+        </div> 
+        <div class="element2">
             <input type="text" name="id" id="id" readonly>
-        Producto
+        </div> 
+        <br>
+        <br>
+        
+        <div class="element1">
+            Producto
+        </div> 
+        <div class="element2">
             <input type="text" name="producto" id="producto">
-        Precio
+        </div>
+        <br>
+        <br>
+        
+        <div class="element1">
+            Precio
+        </div> 
+        <div class="element2">
             <input type="number" step="any" name="precio" id="precio">
-        Descripción
+        </div>
+        <br>
+        <br>
+        
+        <div class="element1">
+            Descripción
+        </div> 
+        <div class="element2">
             <input type="text" name="descripcion" id="descripcion">  
-        Talla
-            <select name="talla" id="talla">
+        </div>
+        <br>
+        <br>
+        
+        <div class="element1">
+            Talla
+        </div> 
+        <div class="element2">   
+            <select name="talla" id="talla" style="color:black">
                 <option value="Chica">Chica</option>
                 <option value="Mediana">Mediana</option>
                 <option value="Grande">Grande</option>
                 <option value="Unitalla">Unitalla</option>
             </select>
+        </div>
         <br>
-        <input type="Submit" name="submit" value="Enviar" style="color:black;">
+        <br>
+
+        <div class="element1">
+            <input type="Submit" name="submit" value="Enviar">
+        </div>
+        
+
     </div>
     </form>
     </div>
@@ -57,15 +96,27 @@
   <div class="modal-content">
     <div class="modal-header">
       <span class="close">&times;</span>
-      <h2>Eliminar Producto</h2>
+      <h2 style="color:#009FE3;vertical-align:middle;">Eliminar Producto</h2>
     </div>
     <div class="modal-body">
     <form action="php/CRUD_Productos/eliminarproducto.php" method="POST" enctype="multipart/form-data">
-    <div style="color:black;">
-        ID Producto
-            <input type="text" name="id" id="id"  readonly>
-        Producto
-            <input type="text" name="producto" id="producto">
+    <div>
+        <br>
+        <div class="element1">
+            ID Producto
+        </div> 
+        <div class="element2">
+            <input type="text" name="id" id="id"  readonly>  
+        </div>
+        <br>
+        <br>
+        <div class="element1">
+            Producto        
+        </div> 
+        <div class="element2">
+            <input type="text" name="producto" id="producto" readonly>
+        </div>
+        <br>
         <br>
         <input type="Submit" name="submit" value="Eliminar" style="color:black;">
     </div>
