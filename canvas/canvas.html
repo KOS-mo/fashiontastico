@@ -3,53 +3,97 @@
 <head>
   <meta charset="UTF-8">
   <title>Canvas</title>
-  
     <link rel="stylesheet" href="css/style.css">
-  
+
 </head>
 
 <body>
 <!--
-  <l
-  ink href='https://fonts.googleapis.com/css?family=Patrick+Hand' rel='stylesheet' type='text/css'>
-  -->
 <center>
+-->
+  <div class="row container">
 
-<!--
-  <p style="color:white;margin:0px 0px 25px;font-family:'Patrick Hand',cursive ;line-height:20px;font-size:45px">SKETCH</p>
-  -->
-  <p>Personaliza tu producto</p>
-  <canvas id="canvas" width="680" height="450"></canvas>
-  <br>
+    <div class="col-md-3 herramientas" >
+      
+      <!-- tools panel -->
+      <div id="tools-panel" class="block">
+        <ul class="menu-tools">
+        
+          <li class="tool-panel-button tool-button selected">
+            <img id="pencil-tool" src="images/tools_panel_pencil_button.png" class="block, fill"/>
+          </li>
 
-   <!-- Linea nueva -->
-  <input type="file" id="fileUpload" name="fileToUpload" />
+          <li class="tool-panel-button tool-button">
+            <img id="spray-tool" src="images/tools_panel_spray_button.png" class="block, fill" />
+          </li>
 
+          <li class="tool-panel-button tool-button">
+            <img id="paint-tool" src="images/tools_panel_paint_button.png" class="block, fill" />
+          </li>
 
-  <button style="background:mediumseagreen" onclick="ActivarTraslacion()">Mover objetos</button>
+          <li class="tool-panel-button tool-button">
+            <img id="eraser-tool" src="images/tools_panel_eraser_button.png" class="block, fill" />
+          </li>     
+          
+        </ul>
+      </div>
 
-  <button style="background:goldenrod" onclick="Clear()">Limpiar</button>
-  <a id="download" style="background:lightseagreen" onclick="Save(this)">Descargar</a>
-  <br>
-  <div onclick="strokeCOLOR(this)" style="background:coral" class="strokeColor"></div>
-  <div onclick="strokeCOLOR(this)" style="background:teal" class="strokeColor"></div>
-  <div onclick="strokeCOLOR(this)" style="background:orchid" class="strokeColor"></div>
-  <div onclick="strokeCOLOR(this)" style="background:deeppink" class="strokeColor"></div>
-  <div onclick="strokeCOLOR(this)" style="background:springgreen" class="strokeColor"></div>
-  <div onclick="strokeCOLOR(this)" style="background:royalblue" class="strokeColor"></div>
-  <div onclick="strokeCOLOR(this)" style="background:chocolate" class="strokeColor"></div>
-  <div onclick="strokeCOLOR(this)" style="background:gold" class="strokeColor"></div>
-  <div onclick="strokeCOLOR(this)" style="background:black" class="strokeColor"></div>
-  <input type="color" oninput="strokeColor = this.value" style="height:35px" placeholder=" Other colours">
+      <!-- Buttons -->
+      <div class="buttonsWithText">
+        <button id="trasladar" style="background:#F15928" onclick="ActivarTraslacion(this)">Mover imagen</button>
+        <button style="background:#FFC708">Girar imagen</button>
+        <button style="background:#A55CA3">Reducir imagen</button>
+        <button style="background:#80C244" onclick="Clear()">Limpiar</button>             
+      </div>      
+    </div> <!-- end of panel-->
+
+    <div class="col-md-9 lienzo">
+      <p class="personaje">
+        <img src="Personaje.png" width="680px" height="117px" alt="Personaje">
+      </p>
+      <div>
+        <canvas id="canvas" width="680" height="462"></canvas>    
+      </div>
+    </div>
+
+  </div><!--End of container-->
+
+  <div class="row">
+    <div class="col-md-12 colorBox">
+      <div onclick="strokeCOLOR(this)" style="background:coral" class="strokeColor"></div>
+      <div onclick="strokeCOLOR(this)" style="background:teal" class="strokeColor"></div>
+      <div onclick="strokeCOLOR(this)" style="background:orchid" class="strokeColor"></div>
+      <div onclick="strokeCOLOR(this)" style="background:deeppink" class="strokeColor"></div>
+      <div onclick="strokeCOLOR(this)" style="background:springgreen" class="strokeColor"></div>
+      <div onclick="strokeCOLOR(this)" style="background:royalblue" class="strokeColor"></div>
+      <!--
+      <div onclick="strokeCOLOR(this)" style="background:chocolate" class="strokeColor"></div>
+      <div onclick="strokeCOLOR(this)" style="background:gold" class="strokeColor"></div>
+      <div onclick="strokeCOLOR(this)" style="background:black" class="strokeColor"></div>
+      -->
+      <input type="color" oninput="strokeColor = this.value" style="height:20px; width:20px; margin:5px 5px;" placeholder=" Other colours">
+    </div>
+        
+    <div class="uploadImage">
+      <input type="file" id="fileUpload"  name="fileToUpload" />
+    </div>
+
+    <div class="downloadButton">
+      <a id="download" style="background:lightseagreen" onclick="Save(this)">Descargar</a>
+    </div>
   </div>
-  <br>
+
+  
+  <!--
   <div onclick="strokeWIDTH(this)" class="strokeWidth">1</div>
   <div onclick="strokeWIDTH(this)" class="strokeWidth">2</div>
   <div onclick="strokeWIDTH(this)" class="strokeWidth">5</div>
   <div onclick="strokeWIDTH(this)" class="strokeWidth">10</div>
   <input type="range" min="1" max="100" oninput="strokeWidth =this.value">
+  -->
+  <!--
 </center>
-
-    <script src="js/index.js"></script>
+-->
+<script src="js/index.js"></script>
 </body>
 </html>

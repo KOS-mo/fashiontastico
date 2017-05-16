@@ -1,37 +1,124 @@
+.personaje{
+  margin-bottom: 0px;
+}
+
 canvas {
-  margin: 0px;
+  /*margin: 0px;*/
+  /*
+  margin-top: -31px; Este es hasta arriba
+  */
+  margin-top: -12px;
   background:green;
   box-sizing: border-box;
   box-shadow:5px 5px 3px black
 }
 
+#tools-panel {
+
+    width: 64px;
+    height: 283px;
+    margin-left: 245px;
+    background: #dfe9f5;
+    background: -moz-linear-gradient(top, #dfe9f5, #dce7f5);
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#dfe9f5), to(#dce7f5));
+}
+
+/*NUEVO*/
+#tools-panel .tool-button
+{
+    padding: 2px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: transparent;
+}
+
+#tools-panel .selected
+{
+  border-color: #c29b29;
+  background: #ffce71; /* fallback */
+  background: -moz-linear-gradient(top, #ffdca0, #ffd181 40%, #ffc45d 45%, #ffd47d 100%);
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffdca0), color-stop(40%, #ffd181), color-stop(45%, #ffc45d), color-stop(100%, #ffd47d));
+}
+
+#tools-panel .tool-button:hover 
+{
+  border-color: #ffb700;
+    background: #dfe9f5; /* fallback */
+    background: -moz-linear-gradient(top, #fdecda, #fddeb8 40%, #ffce68 45%, #ffe78d 90%, #fff7b0, 100%);
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fdecda), color-stop(40%, #fddeb8), color-stop(45%, #ffce68), color-stop(90%, #ffe78d), color-stop(100%, #fff7b0));
+}
+
+/*Hasta aqui tool panel*/
+
+.uploadImage{
+  margin: -30px 0 0 675px;
+}
+
+.menu-tools{
+  list-style: none;
+  margin-left: -43px;
+}
+
+.herramientas{
+  float: left;
+  margin-left: 95px;
+  margin-top: 90px;
+}
+
+.lienzo{
+  float: right;
+  margin-right: 200px;
+}
+
+.buttonsWithText{
+  width: 132px;
+  float: left;
+  margin-top: -260px;
+  margin-left: 100px;
+}
+
+.downloadButton{
+  margin: -20px 0 0 988px;
+}
+
+.colorBox{
+  margin: 600px 0 0 408px;
+}
+
+
 body {
   margin: 0;
   padding: 30px;
-  background:#00476B;
+  background:#3C3C3B;
+  opacity: 0.9;
   color:white;
   font-family:'Patrick Hand',cursive ;
 }
 
 button,
 a {
+  width: 135px;
   background: rgb(240, 240, 240);
   padding: 10px;
   font-family:'Patrick Hand',cursive ;
   font-size: 16px;
-  margin: 12px 5px;
+  margin: 5px 5px;
   border:0;
   color:white;
-  border-radius:10%
+  /*border-radius:10%;*/
+  cursor: pointer;
 }
 
 .strokeColor, .strokeWidth{
   padding:4px 0px;
   border:2px solid white;
-  min-width:40px;
-  min-height:40px;
-  border-radius:100%;
-  margin:5px 3px;
+  width:30px;
+  height:30px;
+  /* border-radius:100%; */
+  /*margin:5px 3px;*/
   display:inline-block;
   vertical-align:middle;
   font-size:20px;
